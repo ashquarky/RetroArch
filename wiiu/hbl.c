@@ -22,7 +22,8 @@
 #include <malloc.h>
 #include <string.h>
 #include <inttypes.h>
-#include <wiiu/os.h>
+#include <coreinit/memorymap.h>
+#include <coreinit/cache.h>
 
 #include "hbl.h"
 
@@ -151,7 +152,7 @@ static int HomebrewCopyMemory(u8 *address, u32 bytes, u32 args_size)
 
       DCFlushRange(address, bytes);
 
-      u32 addressPhysical = (u32)OSEffectiveToPhysical(address);
+      u32 addressPhysical = OSEffectiveToPhysical((u32)address);
 
       s_mem_area *mem_map = MEM_AREA_TABLE;
 
